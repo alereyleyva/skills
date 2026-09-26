@@ -4,6 +4,17 @@ A public collection of skills for AI assistants. Each skill provides specialized
 
 ## Available skills
 
+### `test-engineering`
+
+Guidance for writing and validating tests that provide trustworthy evidence without unnecessary maintenance cost.
+
+**Contents:**
+
+- Test-driven development and regression proof.
+- Choosing the right boundary and avoiding duplicate coverage.
+- Evaluating test sensitivity, reliability, and cost.
+- When to use property, fuzz, mutation, and other testing techniques.
+
 ### `implementation-brief`
 
 Creates a concise technical brief at the end of an implementation task, based on the actual changes and checks performed.
@@ -24,6 +35,7 @@ This repository uses the [Skills CLI](https://skills.sh), which installs skills 
 Install a specific skill:
 
 ```bash
+npx skills add alereyleyva/skills --skill test-engineering
 npx skills add alereyleyva/skills --skill implementation-brief
 ```
 
@@ -43,13 +55,15 @@ The CLI lets you choose skills and target agents. See `npx skills add --help` fo
 
 ## Usage
 
-Once installed, your agent can invoke the skill when appropriate. Use `implementation-brief` at the end of a technical implementation task, after completing the expected checks. The skill writes the brief in English, regardless of the conversation language.
+Once installed, your agent can invoke the skills when appropriate. Use `test-engineering` when writing, changing, reviewing, validating, or auditing tests, and when tests are a quality gate for behavior changes. Use `implementation-brief` at the end of a technical implementation task, after completing the expected checks. The brief is written in English, regardless of the conversation language.
 
 ## Repository structure
 
 Each directory contains a skill and its `SKILL.md` file:
 
 ```text
+test-engineering/
+└── SKILL.md
 implementation-brief/
 └── SKILL.md
 ```
