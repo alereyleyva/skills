@@ -4,6 +4,17 @@ A public collection of skills for AI assistants. Each skill provides specialized
 
 ## Available skills
 
+### `auto-grill`
+
+Runs the installed GrillMe workflow with one independent Decider per round, automatically resolving agreement and escalating exceptions.
+
+**Contents:**
+
+- `auto-grill/SKILL.md` wraps the current GrillMe workflow.
+- `agents/auto-grill-decider.md` defines the fresh, isolated Decider.
+
+AutoGrill also requires `pi-subagents` (`pi install npm:pi-subagents`). Copy `agents/auto-grill-decider.md` to `~/.pi/agent/agents/` after installing the skill.
+
 ### `test-engineering`
 
 Guidance for writing and validating tests that provide trustworthy evidence without unnecessary maintenance cost.
@@ -62,6 +73,10 @@ Once installed, your agent can invoke the skills when appropriate. Use `test-eng
 Each directory contains a skill and its `SKILL.md` file:
 
 ```text
+auto-grill/
+└── SKILL.md
+agents/
+└── auto-grill-decider.md
 test-engineering/
 └── SKILL.md
 implementation-brief/
