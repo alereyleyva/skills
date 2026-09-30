@@ -6,14 +6,7 @@ A public collection of skills for AI assistants. Each skill provides specialized
 
 ### `auto-grill`
 
-Runs the installed GrillMe workflow with one independent Decider per round, automatically resolving agreement and escalating exceptions.
-
-**Contents:**
-
-- `auto-grill/SKILL.md` wraps the current GrillMe workflow.
-- `agents/auto-grill-decider.md` defines the fresh, isolated Decider.
-
-AutoGrill also requires `pi-subagents` (`pi install npm:pi-subagents`). Copy `agents/auto-grill-decider.md` to `~/.pi/agent/agents/` after installing the skill.
+Wraps the currently installed GrillMe workflow with one independent subagent per round, automatically resolving agreement and escalating exceptions. The skill uses the host CLI's native skill and subagent capabilities rather than depending on a specific orchestration package.
 
 ### `test-engineering`
 
@@ -46,6 +39,7 @@ This repository uses the [Skills CLI](https://skills.sh), which installs skills 
 Install a specific skill:
 
 ```bash
+npx skills add alereyleyva/skills --skill auto-grill
 npx skills add alereyleyva/skills --skill test-engineering
 npx skills add alereyleyva/skills --skill implementation-brief
 ```
@@ -66,7 +60,7 @@ The CLI lets you choose skills and target agents. See `npx skills add --help` fo
 
 ## Usage
 
-Once installed, your agent can invoke the skills when appropriate. Use `test-engineering` when writing, changing, reviewing, validating, or auditing tests, and when tests are a quality gate for behavior changes. Use `implementation-brief` at the end of a technical implementation task, after completing the expected checks. The brief is written in English, regardless of the conversation language.
+Once installed, your agent can invoke the skills when appropriate. Use `auto-grill` with a design idea to run the installed GrillMe workflow with independent subagent answers. It requires the host CLI to provide skill loading and isolated subagent delegation; without those capabilities it falls back to GrillMe's normal user-answer workflow. Use `test-engineering` when writing, changing, reviewing, validating, or auditing tests, and when tests are a quality gate for behavior changes. Use `implementation-brief` at the end of a technical implementation task, after completing the expected checks. The brief is written in English, regardless of the conversation language.
 
 ## Repository structure
 
@@ -75,8 +69,6 @@ Each directory contains a skill and its `SKILL.md` file:
 ```text
 auto-grill/
 └── SKILL.md
-agents/
-└── auto-grill-decider.md
 test-engineering/
 └── SKILL.md
 implementation-brief/
