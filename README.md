@@ -6,7 +6,7 @@ A public collection of skills for AI assistants. Each skill provides specialized
 
 ### `auto-grill`
 
-Wraps the currently installed GrillMe workflow with one independent subagent per round, automatically resolving agreement and escalating exceptions. The skill uses the host CLI's native skill and subagent capabilities rather than depending on a specific orchestration package.
+Wraps the currently installed GrillMe workflow with one independent subagent per round, automatically resolving agreement and escalating exceptions. It uses the host CLI's native skill and subagent capabilities; its portable Decider prompt is bundled in `auto-grill/references/decider.md`.
 
 ### `test-engineering`
 
@@ -68,7 +68,9 @@ Each directory contains a skill and its `SKILL.md` file:
 
 ```text
 auto-grill/
-└── SKILL.md
+├── SKILL.md
+└── references/
+    └── decider.md
 test-engineering/
 └── SKILL.md
 implementation-brief/

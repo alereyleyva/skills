@@ -19,17 +19,14 @@ Run the currently installed GrillMe workflow without copying or replacing it. Gr
 
 1. Let GrillMe discover facts and generate its complete current frontier, including a recommendation for every question. Keep recommendations and recommendation rationale private from the subagent.
 2. Start exactly one fresh subagent for the entire round using the host's native delegation capability. Start a new child for every later round. Pass only the goal, relevant settled context, and the complete numbered round with necessary question details and choices. Do not include GrillMe's recommendations, the parent transcript, irrelevant context, or tool access. Configure the child for fresh context without inherited conversation, skills, or tools wherever the host supports those controls. Treat questions as independent unless supplied context explicitly establishes a dependency.
-3. Give the child these instructions along with that round context:
-
-   > You are the independent Decider. Answer every question independently using only the supplied goal, settled context, and round. Do not infer or request GrillMe's recommendation. Choose a reasonable option instead of deferring merely because several options are possible. When other things are reasonably equal, prefer KISS, simplicity, minimal sufficient scope, reversible decisions, incremental evolution, established patterns, and avoiding speculative abstractions. These are tie-breakers, not absolutes. Require human judgment only when a decision genuinely depends on personal intent, taste, values, priorities, or missing information only the user can provide. For every question, preserve its number and return: `Q<number>`, `DECISION: <answer>`, `RATIONALE: <brief reason>`, `HUMAN_JUDGMENT_REQUIRED: yes | no`.
-
+3. Load the bundled `references/decider.md` file from this skill and use it as the child's role instructions. Pass only the goal, relevant settled context, and round as task data. Adapt the prompt to the host's native delegation interface without adding platform-specific requirements.
 4. Compare the answers question by question:
    - If the Decider's answer materially implies the same choice as GrillMe's recommendation and says `HUMAN_JUDGMENT_REQUIRED: no`, resolve the question automatically.
    - Escalate materially different choices, unclear or missing answers, and any question marked `HUMAN_JUDGMENT_REQUIRED: yes`. Neither recommendation wins automatically.
 5. Batch all escalated questions into one user prompt. Include each original question and its choices, GrillMe's recommendation, the Decider's answer, and a brief explanation of why human input is needed. Do not ask about automatically resolved questions.
 6. Combine automatic and human answers into a complete response to the original round, preserving its numbering and semantics, and return it to GrillMe. Continue with GrillMe's next frontier.
 
-If the host cannot provide a fresh child with sufficiently isolated context, or the child fails, escalate the affected questions rather than claiming independent answers or guessing. If no questions need the user, return the complete automatic answers to GrillMe immediately.
+If the bundled Decider prompt is unavailable, the host cannot provide a fresh child with sufficiently isolated context, or the child fails, escalate the affected questions rather than claiming independent answers or guessing. If no questions need the user, return the complete automatic answers to GrillMe immediately.
 
 ## Completion
 
